@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import ThemeToggle from "./Components/ThemeToggle.js";
+import NavBar from "./Components/NavBar.js";
 import { ThemeProvider } from "styled-components";
 
 const lightTheme = {
@@ -25,7 +26,8 @@ function App() {
 
   return (
     <ThemeProvider theme={themes[theme]}>
-      <ThemeToggle theme={theme} setTheme={setTheme} />      
+      <NavBar />
+      <ThemeToggle theme={theme} setTheme={setTheme} />
     </ThemeProvider>
   );
 }
