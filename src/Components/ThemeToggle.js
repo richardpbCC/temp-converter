@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Flex, Text, Box } from "rebass";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 
 const Page = styled.div`
@@ -36,6 +37,7 @@ const Toggle = styled.button`
 const Instruction = styled.h1`
   color: ${(props) => props.theme.titleColor};
   transition: all 0.5s ease;
+  padding-right: 10px;
 `;
 
 const Description = styled.span`
@@ -61,13 +63,25 @@ function ThemeToggle(props) {
     );
 
   return (
-    <Page>
-      <Container>
-        <Toggle onClick={toggleTheme}>{icon}</Toggle>
-        <Instruction>Toggle Theme</Instruction>
-        <Description>Click the toggle button to change the theme</Description>
-      </Container>
-    </Page>
+    <>
+      <Flex px={2} color="white" bg="black" alignItems="center">
+        <Text p={2} fontWeight="bold">
+          Temperature Converter
+        </Text>
+        <Box mx="auto" />
+        <Instruction>Toggle Theme:</Instruction>
+        <Box mx={-2} p={2}>
+          <Toggle onClick={toggleTheme}>{icon}</Toggle>
+        </Box>
+      </Flex>
+    </>
+    // <Page>
+    //   <Container>
+    //     <Toggle onClick={toggleTheme}>{icon}</Toggle>
+    //     <Instruction>Toggle Theme</Instruction>
+    //     <Description>Click the toggle button to change the theme</Description>
+    //   </Container>
+    // </Page>
   );
 }
 
