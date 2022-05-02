@@ -1,7 +1,8 @@
-import "./App.css";
 import { useState } from "react";
-import ThemeToggle from "./Components/ThemeToggle.js";
 import { ThemeProvider } from "styled-components";
+
+import NavBar from "./Components/NavBar.js";
+import Converter from "./Components/Converter.js";
 
 const lightTheme = {
   pageBackground: "white",
@@ -24,8 +25,9 @@ function App() {
   const [theme, setTheme] = useState("light");
 
   return (
-    <ThemeProvider theme={themes[theme]}>      
-      <ThemeToggle theme={theme} setTheme={setTheme} />
+    <ThemeProvider theme={themes[theme]}>
+      <NavBar theme={theme} setTheme={setTheme} />
+      <Converter theme={theme} setTheme={setTheme}/>
     </ThemeProvider>
   );
 }
