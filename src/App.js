@@ -1,24 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { ThemeProvider } from "styled-components";
+
+import NavBar from "./Components/NavBar.js";
+import Converter from "./Components/Converter.js";
+
+// const lightTheme = {
+//   pageBackground: "white",
+//   navBar: "#282c36",
+//   toggleInstruction: "purple",
+//   text: "black",
+// };
+
+// const darkTheme = {
+//   pageBackground: "#282c36",
+//   navBar: "black",
+//   toggleInstruction: "tomato",
+//   text: "lavender",
+// };
+
+const themes = {
+  light: {
+    name: "light",
+    pageBackground: "white",
+    navBar: "green",
+    toggleInstruction: "purple",
+    text: "black",
+  },
+  dark: {
+    name: "dark",
+    pageBackground: "#282c36",
+    navBar: "black",
+    toggleInstruction: "tomato",
+    text: "lavender",
+  },
+};
 
 function App() {
+  const [theme, setTheme] = useState("light");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={themes[theme]}>
+      <NavBar theme={themes[theme]} setTheme={setTheme} />
+      <Converter theme={theme} />
+    </ThemeProvider>
   );
 }
 
