@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Flex, Text, Box } from "rebass";
+import { Label, Input } from "@rebass/forms";
 
 const Page = styled.div`
   display: flex;
@@ -23,7 +24,7 @@ const Description = styled.span`
   transition: all 0.5s ease;
 `;
 
-function Converter(props) {  
+function Converter(props) {
   return (
     <>
       <Page>
