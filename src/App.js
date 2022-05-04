@@ -4,21 +4,35 @@ import { ThemeProvider } from "styled-components";
 import NavBar from "./Components/NavBar.js";
 import Converter from "./Components/Converter.js";
 
-const lightTheme = {
-  pageBackground: "white",
-  titleColor: "purple",
-  tagLineColor: "black",
-};
+// const lightTheme = {
+//   pageBackground: "white",
+//   navBar: "#282c36",
+//   toggleInstruction: "purple",
+//   text: "black",
+// };
 
-const darkTheme = {
-  pageBackground: "#282c36",
-  titleColor: "tomato",
-  tagLineColor: "lavender",
-};
+// const darkTheme = {
+//   pageBackground: "#282c36",
+//   navBar: "black",
+//   toggleInstruction: "tomato",
+//   text: "lavender",
+// };
 
 const themes = {
-  light: lightTheme,
-  dark: darkTheme,
+  light: {
+    name: "light",
+    pageBackground: "white",
+    navBar: "green",
+    toggleInstruction: "purple",
+    text: "black",
+  },
+  dark: {
+    name: "dark",
+    pageBackground: "#282c36",
+    navBar: "black",
+    toggleInstruction: "tomato",
+    text: "lavender",
+  },
 };
 
 function App() {
@@ -26,8 +40,8 @@ function App() {
 
   return (
     <ThemeProvider theme={themes[theme]}>
-      <NavBar theme={theme} setTheme={setTheme} />
-      <Converter theme={theme} setTheme={setTheme}/>
+      <NavBar theme={themes[theme]} setTheme={setTheme} />
+      <Converter theme={theme} />
     </ThemeProvider>
   );
 }

@@ -10,7 +10,7 @@ const Toggle = styled.button`
   height: 50px;
   border-radius: 50%;
   border: none;
-  background-color: ${(props) => props.theme.titleColor};
+  background-color: ${(props) => props.theme.toggleInstruction};
   color: ${(props) => props.theme.pageBackground};
   &:focus {
     outline: none;
@@ -19,14 +19,17 @@ const Toggle = styled.button`
 `;
 
 const Instruction = styled.h2`
-  color: ${(props) => props.theme.titleColor};
+  color: ${(props) => props.theme.toggleInstruction};
   transition: all 0.5s ease;
   padding-right: 10px;
 `;
 
-function ThemeToggle(props) {
+function NavBar(props) {
+  
   function toggleTheme() {
-    if (props.theme === "light") {
+    console.log("props",props.theme.name)
+    console.log("clicked")
+    if (props.theme.name === "light") {
       props.setTheme("dark");
     } else {
       props.setTheme("light");
@@ -34,7 +37,7 @@ function ThemeToggle(props) {
   }
 
   const icon =
-    props.theme === "light" ? (
+    props.theme.name === "light" ? (
       <BsFillMoonFill size={40} />
     ) : (
       <BsFillSunFill size={40} />
@@ -42,7 +45,7 @@ function ThemeToggle(props) {
 
   return (
     <>
-      <Flex px={2} color="white" bg="black" alignItems="center">
+    <Flex px={2} color="white" bg={`${props.theme.navBar}`} alignItems="center">
         <Text p={2} fontWeight="bold">
           Temperature Converter
         </Text>
@@ -51,9 +54,9 @@ function ThemeToggle(props) {
         <Box mx={-2} p={2}>
           <Toggle onClick={toggleTheme}>{icon}</Toggle>
         </Box>
-      </Flex>      
+      </Flex>        
     </>
   );
 }
 
-export default ThemeToggle;
+export default NavBar;

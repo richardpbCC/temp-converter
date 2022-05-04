@@ -18,7 +18,7 @@ const Container = styled.div`
 `;
 
 const Description = styled.span`
-  color: ${(props) => props.theme.tagLineColor};
+  color: ${(props) => props.theme.text};
   font-size: 18px;
   transition: all 0.5s ease;
 `;
