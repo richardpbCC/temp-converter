@@ -10,7 +10,7 @@ const Toggle = styled.button`
   height: 50px;
   border-radius: 50%;
   border: none;
-  background-color: ${(props) => props.theme.toggleInstruction};
+  background-color: ${(props) => props.theme.title};
   color: ${(props) => props.theme.pageBackground};
   &:focus {
     outline: none;
@@ -18,17 +18,16 @@ const Toggle = styled.button`
   transition: all 0.5s ease;
 `;
 
-const Instruction = styled.h2`
-  color: ${(props) => props.theme.toggleInstruction};
+const Title = styled.h2`
+  color: ${(props) => props.theme.title};
+  padding-left: 5px;
   transition: all 0.5s ease;
   padding-right: 10px;
 `;
 
 function NavBar(props) {
   
-  function toggleTheme() {
-    console.log("props",props.theme.name)
-    console.log("clicked")
+  function toggleTheme() {    
     if (props.theme.name === "light") {
       props.setTheme("dark");
     } else {
@@ -46,11 +45,8 @@ function NavBar(props) {
   return (
     <>
     <Flex px={2} color="white" bg={`${props.theme.navBar}`} alignItems="center">
-        <Text p={2} fontWeight="bold">
-          Temperature Converter
-        </Text>
+        <Title>Temperature Converter</Title>
         <Box mx="auto" />
-        <Instruction>Click to toggle theme</Instruction>
         <Box mx={-2} p={2}>
           <Toggle onClick={toggleTheme}>{icon}</Toggle>
         </Box>
