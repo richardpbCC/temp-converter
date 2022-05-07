@@ -11,6 +11,7 @@ const themes = {
     navBar: "#282c36",
     title: "blueviolet",
     text: "#6363CE",
+    textBox: "black",
   },
   dark: {
     name: "dark",
@@ -18,6 +19,7 @@ const themes = {
     navBar: "black",
     title: "tomato",
     text: "lavender",
+    textBox: "white",
   },
 };
 

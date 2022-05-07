@@ -7,6 +7,7 @@ const Page = styled.div`
   height: 100vh;
   width: 100%;
   background-color: ${(props) => props.theme.pageBackground};
+  color: ${(props) => props.theme.textBox};
   transition: all 0.5s ease;
 `;
 
