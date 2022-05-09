@@ -16,7 +16,8 @@ function Converter(props) {
   const [egTemp, setEgTemp] = useState("e.g 25");
 
   const inputForm = useRef(null);
-  const radioButton = useRef(true);
+  const radioButton = useRef({ checked: true } );
+  console.log(radioButton);
 
   function toggleTempType(event) {
     if (event.target.id === "fahrenheit") {
@@ -28,7 +29,7 @@ function Converter(props) {
   }
 
   function calculateTemp() {
-    const input = Number(inputForm.current.value);    
+    const input = Number(inputForm.current.value);
 
     if (isNaN(input)) {
       setOutputTemp("Invalid input");
@@ -46,15 +47,15 @@ function Converter(props) {
   return (
     <>
       <Page>
-        <Flex flexWrap="wrap" mx="auto">
-          <Box width={1} px={2} mx="auto">
+        <Flex flexWrap="wrap" mx="auto" alignItems="center">
+          <Box px={2} mx="auto">
             <Flex mb={3}>
-              <Box width={1 / 2} px={-2}>
+              <Box width={1} px={-2}>
                 <Box as="form" onSubmit={(e) => e.preventDefault()} py={3}>
                   <Flex mx={2} mb={3}>
                     <Box width={1} px={2}>
                       <Label py={2} color={`${props.theme.text}`}>
-                        {`Input temperature in °${
+                        {`Input temp in °${
                           radioButton.current.checked === true ? "C" : "F"
                         } :`}
                       </Label>
@@ -66,7 +67,7 @@ function Converter(props) {
                         placeholder={egTemp}
                         onChange={calculateTemp}
                         width={1 / 2}
-                        minWidth={200}
+                        minWidth={150}
                       />
                     </Box>
                   </Flex>
@@ -99,8 +100,8 @@ function Converter(props) {
 
               <Box width={1 / 2} px={-2}>
                 <Box as="form" onSubmit={(e) => e.preventDefault()} py={3}>
-                  <Flex mx={2} mb={3}>
-                    <Box width={1} px={2}>
+                  <Flex mx={-4} mb={3}>
+                    <Box width={1} px={-2}>
                       <Label py={2} color={`${props.theme.text}`}>
                         {`Ouput in °${
                           radioButton.current.checked === true ? "F" : "C"
@@ -113,7 +114,7 @@ function Converter(props) {
                         defaultValue={outputTemp}
                         readOnly={true}
                         width={1 / 2}
-                        minWidth={200}
+                        minWidth={150}
                       />
                     </Box>
                   </Flex>
