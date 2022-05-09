@@ -16,8 +16,7 @@ function Converter(props) {
   const [egTemp, setEgTemp] = useState("e.g 25");
 
   const inputForm = useRef(null);
-  const radioButton = useRef({ checked: true } );
-  console.log(radioButton);
+  const radioButton = useRef({ checked: true } ); 
 
   function toggleTempType(event) {
     if (event.target.id === "fahrenheit") {
