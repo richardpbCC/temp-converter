@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import styled from "styled-components";
 import { Flex, Text, Box } from "rebass";
-import { Label, Input, Select, Textarea, Radio, Checkbox } from "@rebass/forms";
+import { Label, Input, Radio } from "@rebass/forms";
 
 const Page = styled.div`
   height: 100vh;
@@ -12,14 +12,13 @@ const Page = styled.div`
 `;
 
 function Converter(props) {
-  const [tempType, setTempType] = useState("celcius");
   const [outputTemp, setOutputTemp] = useState("");
   const [egTemp, setEgTemp] = useState("e.g 25");
 
   const inputForm = useRef(null);
+  const radioButton = useRef(true);
 
   function toggleTempType(event) {
-    setTempType(event.target.id);
     if (event.target.id === "fahrenheit") {
       setEgTemp("e.g 77");
     } else {
@@ -29,15 +28,14 @@ function Converter(props) {
   }
 
   function calculateTemp() {
-    const input = Number(inputForm.current.value);
-    console.log(inputForm.current.value);
+    const input = Number(inputForm.current.value);    
 
-    if (isNaN(input)) {      
+    if (isNaN(input)) {
       setOutputTemp("Invalid input");
     } else if (inputForm.current.value === "") {
       setOutputTemp("");
     } else {
-      if (tempType === "celcius") {
+      if (radioButton.current.checked === true) {
         setOutputTemp((input * 9) / 5 + 32);
       } else {
         setOutputTemp((input - 32) * (5 / 9));
@@ -48,22 +46,16 @@ function Converter(props) {
   return (
     <>
       <Page>
-        <Flex mx={-1}>
-          <Box width={1 / 4} px={2}>
-            <Text p={1} color="background" bg="primary">
-              Quarter
-            </Text>
-          </Box>
-
-          <Box width={1 / 2} px={2}>
-            <Flex mx={-2} mb={3}>
+        <Flex flexWrap="wrap" mx="auto">
+          <Box width={1} px={2} mx="auto">
+            <Flex mb={3}>
               <Box width={1 / 2} px={-2}>
                 <Box as="form" onSubmit={(e) => e.preventDefault()} py={3}>
                   <Flex mx={2} mb={3}>
                     <Box width={1} px={2}>
                       <Label py={2} color={`${props.theme.text}`}>
                         {`Input temperature in °${
-                          tempType === "celcius" ? "C" : "F"
+                          radioButton.current.checked === true ? "C" : "F"
                         } :`}
                       </Label>
                       <Input
@@ -72,24 +64,28 @@ function Converter(props) {
                         name="input"
                         ref={inputForm}
                         placeholder={egTemp}
-                        onChange={calculateTemp}                        
+                        onChange={calculateTemp}
+                        width={1 / 2}
+                        minWidth={200}
                       />
                     </Box>
                   </Flex>
-                  <Flex mx={-2} flexWrap="wrap">
-                    <Label width={[1, 1 / 2]} p={2}>
+                  <Flex minWidth={200}>
+                    <Label p={2}>
                       <Radio
-                        mx={3}
+                        mx={2}
                         id="celcius"
                         name="celcius"
                         value="celcius"
                         defaultChecked
+                        ref={radioButton}
                         onClick={toggleTempType}
                       />
                       <Text color={`${props.theme.text}`}>Celcius</Text>
                     </Label>
-                    <Label width={[1, 1 / 2]} p={2}>
+                    <Label p={2}>
                       <Radio
+                        mx={1}
                         id="fahrenheit"
                         name="celcius"
                         value="fahrenheit"
@@ -106,7 +102,9 @@ function Converter(props) {
                   <Flex mx={2} mb={3}>
                     <Box width={1} px={2}>
                       <Label py={2} color={`${props.theme.text}`}>
-                        {`Ouput in °${tempType === "celcius" ? "F" : "C"} :`}
+                        {`Ouput in °${
+                          radioButton.current.checked === true ? "F" : "C"
+                        } :`}
                       </Label>
                       <Input
                         id="name"
@@ -114,6 +112,8 @@ function Converter(props) {
                         color={outputTemp === "Invalid input" ? "red" : ""}
                         defaultValue={outputTemp}
                         readOnly={true}
+                        width={1 / 2}
+                        minWidth={200}
                       />
                     </Box>
                   </Flex>
@@ -121,16 +121,6 @@ function Converter(props) {
                 </Box>
               </Box>
             </Flex>
-
-            <Text p={1} color="background" bg="primary">
-              Half
-            </Text>
-          </Box>
-
-          <Box width={1 / 4} px={2}>
-            <Text p={1} color="background" bg="primary">
-              Quarter
-            </Text>
           </Box>
         </Flex>
       </Page>
